@@ -6,6 +6,18 @@ public abstract class Product implements Item{
     private String manufacturer;
     private String name;
 
+    /***
+     * @param name
+     * @param manufacturer
+     * @param mediaType
+     */
+    public Product(String name, String manufacturer, ItemType mediaType) {
+    }
+
+    public Product() {
+
+    }
+
     public void setId(int id){
         this.id = id;
     }
