@@ -51,6 +51,10 @@ public class Employee {
         this.email = email;
         this.password = password;
     }
+
+    public Employee(StringBuilder append, String password, String depId) {
+    }
+
     /***************************************************
      * Provides a console output that displays an Employee object.
      * @author Brendan Beardsley
@@ -172,5 +176,9 @@ public class Employee {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getDeptId() {
+        return null;
     }
 }
