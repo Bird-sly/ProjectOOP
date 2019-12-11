@@ -2,18 +2,22 @@ package sample;
 public enum ItemType {
     AUDIO("AU"),
     VISUAL("VI"),
-    AUDIOMOBILE("AM"),
-    VISUALMOBILE("VM");
+    AUDIO_MOBILE("AM"),
+    VISUAL_MOBILE("VM");
 
-    final String itemType;
-//didnt use setter because item type is final
-    ItemType(String itemType) {
-      this.itemType =  itemType;
+    private String code;
+
+    ItemType(String code) {
+        this.code = code;
     }
 
-    public String getItemType() {
-        return itemType;
+    /**
+     * Getter for property 'code'.
+     *
+     * @return Value for property 'code'.
+     */
+    public String getCode() {
+        return code;
     }
+
 }
-
-

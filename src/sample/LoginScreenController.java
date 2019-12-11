@@ -1,58 +1,62 @@
 package sample;
-import java.io.IOException;
-import java.sql.SQLException;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 
-public class LoginScreenController { @FXML
-private TextField userId;
+public class LoginScreenController {
 
-    @FXML
-    private PasswordField password;
 
-    @FXML
-    private Button loginButton;
+        private Employee userStore;
 
-    @FXML
-    private Button signUp;
+        @FXML
+        private Button btnRegister;
+        @FXML private Button btnLogin;
+        @FXML private TextField fullName;
+        @FXML private TextField TF_password;
 
-    @FXML
-    void signUpScene(ActionEvent event) {
-        Main.loadScene(signUp, "signUp.fxml", "Signup Screen");
-
-    }
-
-    /**
-     * Method for login action when login button pressed to validate the login
-     *
-     * @param event login action
-     * @throws SQLException N/A.
-     * @throws IOException  N/A.
-     */
-    @FXML
-    void loginFunction(ActionEvent event) throws SQLException, IOException {
-
-        DatabaseManager db = new DatabaseManager();
-        String username = userId.getText();
-        String pass = password.getText();
-        if (db.login(username, pass)) {
-            Main.loadScene(loginButton, "sample.fxml", "Product Line");
-        } else {
-            Main.errorMessage("Password doesnt match");
+        /** Method called when the scene loads. */
+        @FXML
+        void initialize() {
+            TF_password.setOnKeyPressed(
+                    event -> {
+                        if (event.getCode() == KeyCode.ENTER) {
+                            actionLogin();
+                            TF_password.clear();
+                        }
+                    });
         }
 
-    }
+        /**
+         * * Method when login button is pressed.
+         *
+         */
+        public void actionLogin() {
+            Alert alert;
 
-    /**
-     * Initialize the screen
-     */
-    @FXML
-    public void initialize() {
-        userId.setText("m.shafi");
-        password.setText("As!");
-    }
+            String username = fullName.getText();
+            String pass = TF_password.getText();
 
-}
+            userStore = new Employee();
+
+           // boolean exists = userStore.checkUserExists(username);
+            boolean passMatches = userStore.comparePassword(username, pass);
+
+            if (passMatches) {
+                //Session.getInstance("").cleanUserSession();
+                //Session session = Session.getInstance(username);
+                Utilities.nextScene(btnLogin, "home", "Home - " + username);
+            } else {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Invalid login!");
+                alert.show();
+            }
+        }
+
+        /** * Method to transition to the register view. */
+        public void actionRegister() {
+            Utilities.nextScene(btnRegister, "signUp", "Register");
+        }
+    }

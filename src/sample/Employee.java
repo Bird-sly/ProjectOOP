@@ -1,184 +1,193 @@
 package sample;
 
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Employee {
+/**
+ * Employee class to create an employee.
+ * @author Brendan Beardsley
+ * @version 1.0
+ */
+public final class Employee{
 
-    private String name;
-    private String username;
-    private String password;
-    private String email;
+    StringBuilder name;
+    String username;
+    String password;
+    String email;
+    String deptId;
+    Pattern depPattern = Pattern.compile("[A-Z][a-z]{3}[0-9]{2}");
+    private DatabaseManager dao = new DatabaseManager();
+    private Connection conn = null;
+    private PreparedStatement ps = null;
 
-    /***************************************************
-     * providing a default employee object if info is invalid.
-     * @author Brendan Beardsley
-     * @param name name of employee is used to make username and email.
-     * @param password password of employee is tested if it is valid.
-     */
-
-    Employee(String name, String password) {
-        this.name = name;
-        if (checkName(name)) {
-
-            setUsername(name);
-            setEmail(name);
-        } else {
-
-            this.username = "default";
-            this.email = "user@oracleacademy.Test";
-        }
-
-        if (isValidPassword(password)) {
-            this.password = password;
-        } else {
-            this.password = "pw";
-        }
+    /** Constructor that sets the username. */
+    public Employee(StringBuilder name, String password, String deptId) {
+        this.username = "test";
+        setDeptId(deptId);
+        setUsername();
+        setEmail();
     }
 
-    /***************************************************
-     * Constructor for Employee object.
-     * @author Brendan Beardsley
-     * @param name name of employee.
-     * @param username username of employee.
-     * @param email email of employee.
-     * @param password password of employee.
-     */
+    public Employee() {
 
-    Employee(String name, String username, String email, String password) {
-        this.name = name;
+    }
+
+    public void setUsername() {
+        if (checkName()) {
+            String[] tokens = name.toString().toLowerCase().split(" ");
+            username = tokens[0].substring(0, 1) + "." + tokens[1];
+        }
+    }
+    private void setDeptId(String deptId) {
+        if (validId(deptId)) {
+            this.deptId = deptId;
+        } else {
+            this.deptId = "None01";
+        }
+
+    }
+    private boolean checkName() {
+        return name.toString().contains(" ");}
+
+    public Employee(String username, String password) {
         this.username = username;
-        this.email = email;
         this.password = password;
     }
+    private void setEmail() {
+        if (checkName()) {
+            String[] tokens = name.toString().toLowerCase().split(" ");
 
-    public Employee(StringBuilder append, String password, String depId) {
+            email = tokens[0] + "." + tokens[1] + "@fgcu.edu";
+        }
+
+    }
+    private boolean validId(String id) {
+        Matcher deptIdValidation = depPattern.matcher(id);
+        return deptIdValidation.find();
+    }
+    /** Method to create a new user and insert it into the database. */
+    public void createUser() {
+        try {
+            conn = dao.getConnection();
+
+            ps = conn.prepareStatement("INSERT INTO Users(username, password) VALUES(?, ?)");
+            ps.setString(1, this.username);
+            ps.setString(2, this.password);
+
+            ps.execute();
+
+            ps.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    /***************************************************
-     * Provides a console output that displays an Employee object.
-     * @author Brendan Beardsley
-     * @return returns the output string to console.
+    /**
+     * Method to check the database to see if a specified user already exists.
      */
-    public String toString() {
-        return "Employee Details" + "\n" + "Name : " + name + "\n" + "Username : "
-                + username + "\n" + "Email : " + email + "\n" + "Initial Password : " + password;
+    public boolean checkUserExists(String username) {
+        boolean exists = false;
+        try {
+            conn = dao.getConnection();
+            ps = conn.prepareStatement("SELECT * FROM USERS WHERE USERNAME=?");
+            ps.setString(1, username);
+
+            ResultSet rs = ps.executeQuery();
+
+            // rs.next() is false if the set is empty
+            exists = rs.next();
+
+            // close stuff
+            ps.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return exists;
     }
-    /***************************************************
-     * Splitting name into first and last to make the username.
-     * @author Brendan Beardsley
-     * @param name takes the full name of the Employee and splits it
-     *             into the first and last to create the username.
+    /**
+     * Getter for property 'name'.
+     *
+     * @return the name.
      */
-    private void setUsername(String name) {
-        String[] newName = name.split(" ");
-        String first = newName[0];
-        String last = newName[1];
-        this.username = first.substring(0, 1).toLowerCase() + last.toLowerCase();
-    }
-    /***************************************************
-     * Making sure that there is a space in the full name.
-     * @author Brendan Beardsley
-     * @param name checks if there is a space in between the first and
-     *             last name of the Employee.
-     */
-    //
-    private boolean checkName(String name) {
-        final String RegexNameCheck = "([a-zA-Z]+\\s[a-zA-Z]+)";
-
-        Pattern pattern = Pattern.compile(RegexNameCheck);
-
-        return pattern.matcher(name).matches();
-    }
-    /***************************************************
-     * Splitting the name into first and last to make the email.
-     * @author Brendan Beardsley
-     * @param name Employee's gets split into first and last name
-     *             to create the email.
-     */
-    private void setEmail(String name) {
-        String[] newName = name.split(" ");
-        String first = newName[0];
-        String last = newName[1];
-
-        this.email = first.toLowerCase() + "." + last.toLowerCase() + "@oracleacademy.Test";
-    }
-    /***************************************************
-     * Making sure password is containing at least a
-     * lowercase letter, uppercase letter, and a special character.
-     * @author Brendan Beardsley
-     * @param password Employee's password gets verified.
-     * @return if the password is valid or not.
-     */
-    private boolean isValidPassword(String password) {
-        final String regexPassCheck = "(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&])[a-zA-Z!@#$%&]+";
-
-        Pattern pattern = Pattern.compile(regexPassCheck);
-
-        return pattern.matcher(password).matches();
-    }
-    /***************************************************
-     * Getter of Employee name.
-     * @author Brendan Beardsley
-     * @return the Employee's name.
-     */
-
-    public String getName() {
+    public StringBuilder getName() {
         return name;
     }
-    /***************************************************
-     * Setter of Employee name.
-     * @author Brendan Beardsley
-     * @param name sets the name.
-     */
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    /***************************************************
-     * Getter of Employee username.
-     * WARNING says can be package-private but then it breaks the Employee tableView.
-     * @author Brendan Beardsley
-     * @return the Employee username.
+    /**
+     * Getter for property 'username'.
+     *
+     * @return name.
      */
-
     public String getUsername() {
         return username;
     }
 
-    /***************************************************
-     * Getter of Employee password.
-     * WARNING says can be package-private but then it breaks the Employee tableView.
-     * @author Brendan Beardsley
-     * @return the Employee password.
+    /**
+     * Getter for property 'password'
+     *
+     * @return password.
      */
-
-    //
     public String getPassword() {
         return password;
     }
-    /***************************************************
-     * Setter of Employee password.
-     * @author Brendan Beardsley
-     * @param password sets the password.
+
+    /**
+     * Getter for property 'email'.
+     *
+     * @return email.
      */
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /***************************************************
-     * Getter of Employee email.
-     * WARNING says can be package-private but then it breaks the Employee tableView.
-     * @author brendan
-     * @return the Employee email
-     */
-
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Getter for property 'deptId'
+     *
+     * @return deptId
+     */
     public String getDeptId() {
-        return null;
+        return deptId;
+
     }
+    /**
+     * Method to compare the entered password on the login screen with the password in the database.
+     *
+     * @param username The username to check.
+     * @param password The password to compare.
+     * @return A boolean if the password matches or not.
+     */
+    public boolean comparePassword(String username, String password) {
+        boolean matchedPass = false;
+        try {
+            conn = dao.getConnection();
+            ps = conn.prepareStatement("SELECT * FROM USERS WHERE USERNAME=? AND PASSWORD=?");
+            ps.setString(1, username);
+            ps.setString(2, password);
+
+            ResultSet rs = ps.executeQuery();
+
+            // rs.next() is not empty if both user and pass are in the same row
+            matchedPass = rs.next();
+
+            // close stuff
+            ps.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return matchedPass;
+    }
+
 }
