@@ -1,0 +1,22 @@
+Type: AUDIO (AU) || Name: Galaxy Buds || Made: Samsung || by an employee from departmentid of : 21polS at 2019-12-11 15:41:00.178
+Type: AUDIO (AU) || Name: Galaxy Buds || Made: Samsung || by an employee from departmentid of : 21polS at 2019-12-11 15:41:00.183 
+Type: AUDIO (AU) || Name: Galaxy Buds || Made: Samsung || by an employee from departmentid of : 21polS at 2019-12-11 15:41:00.188 
+Type: AUDIO (AU) || Name: Galaxy Buds || Made: Samsung || by an employee from departmentid of : 21polS at 2019-12-11 15:41:00.757 
+Type: AUDIO (AU) || Name: Galaxy Buds || Made: Samsung || by an employee from departmentid of : 21polS at 2019-12-11 15:41:00.762 
+Type: AUDIO (AU) || Name: Galaxy Buds || Made: Samsung || by an employee from departmentid of : 21polS at 2019-12-11 15:41:00.766 
+Type: AUDIO (AU) || Name: AKG Headphone || Made: Samsung || by an employee from departmentid of : 1 at 2019-12-11 15:43:08.265 
+Type: AUDIO (AU) || Name: AKG Headphone || Made: Samsung || by an employee from departmentid of : 1 at 2019-12-11 15:43:08.27 
+Type: AUDIO (AU) || Name: AKG Headphone || Made: Samsung || by an employee from departmentid of : 1 at 2019-12-11 15:43:08.274 
+Type: AUDIO (AU) || Name: AKG Headphone || Made: Samsung || by an employee from departmentid of : 1 at 2019-12-11 15:43:08.278 
+Type: AUDIO (AU) || Name: AKG Headphone || Made: Samsung || by an employee from departmentid of : 1 at 2019-12-11 15:43:08.282 
+Type: AUDIO_MOBILE (AM) || Name: Ipod 2nd Gen || Made: Apple || by an employee from departmentid of : elppA at 2019-12-11 15:43:58.663 
+Type: AUDIO_MOBILE (AM) || Name: Ipod 2nd Gen || Made: Apple || by an employee from departmentid of : elppA at 2019-12-11 15:44:01.626 
+Type: AUDIO_MOBILE (AM) || Name: Walkman || Made: Walkman || by an employee from departmentid of : namklaw at 2019-12-11 15:45:09.125 
+Type: AUDIO_MOBILE (AM) || Name: Walkman || Made: Walkman || by an employee from departmentid of : namklaw at 2019-12-11 15:45:17.876 
+Type: VISUAL_MOBILE (VM) || Name: S 10e || Made: Samsung || by an employee from departmentid of :  at 2019-12-11 20:33:23.319 
+Type: VISUAL_MOBILE (VM) || Name: S 10e || Made: Samsung || by an employee from departmentid of :  at 2019-12-11 20:33:23.325 
+Type: VISUAL_MOBILE (VM) || Name: S 10e || Made: Samsung || by an employee from departmentid of :  at 2019-12-11 20:33:23.329 
+Type: VISUAL_MOBILE (VM) || Name: S 10e || Made: Samsung || by an employee from departmentid of :  at 2019-12-11 20:33:23.333 
+Type: VISUAL_MOBILE (VM) || Name: S 10e || Made: Samsung || by an employee from departmentid of :  at 2019-12-11 20:33:23.337 
+Type: VISUAL_MOBILE (VM) || Name: S 10e || Made: Samsung || by an employee from departmentid of :  at 2019-12-11 20:33:23.341 
+Type: VISUAL_MOBILE (VM) || Name: S 10e || Made: Samsung || by an employee from departmentid of :  at 2019-12-11 20:33:23.345 
