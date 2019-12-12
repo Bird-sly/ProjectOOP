@@ -1,43 +1,49 @@
-package view;
+package sample;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import java.awt.Dimension;
-import java.awt.Font;
+
+import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import sample.*;
-
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.plaf.FontUIResource;
-
+/**
+ * Main Class to run the ProductionLog
+ */
 public class Main extends Application {
 
-    public static final String PATH = "res/ProductionLog.txt";
-    ;
+    //Production log list text file
+    public static final String PATH = "res/productionLog.txt";
+    /**
+     * Method for starting a scene
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("view/sample.fxml"));
-        primaryStage.setTitle("Login");
-        primaryStage.setScene(new Scene(root,348, 115));
-        primaryStage.setResizable(true);
+        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        primaryStage.setTitle("Login Screen");
+        primaryStage.setScene(new Scene(root, 800,800));
         primaryStage.show();
     }
 
+
+    /**
+     * Method for adding the log to the text file
+     *
+     * @param message info which need to be save in the text file
+     * @param objects which saves the time of the production as object
+     */
     public static void logToFile(String message, Object... objects) {
+
         try (FileReader fr = new FileReader(PATH);
              BufferedReader bfr = new BufferedReader(fr);
              FileWriter fw = new FileWriter(PATH, true)
@@ -46,7 +52,14 @@ public class Main extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
+
+    /**
+     * Nethod for saving the text to text file
+     *
+     * @return newlist arraylist
+     */
     public static List<LogView> logToFile1() {
         ArrayList<LogView> newListRecord = new ArrayList<>();
         int lines = 1;
@@ -71,6 +84,11 @@ public class Main extends Application {
         return newListRecord;
     }
 
+    /**
+     * Used the code written by Romanov and edited to set up the dimension
+     *
+     * @param message display the error message
+     */
     public static void errorMessage(String message) {
         UIManager.put("OptionPane.minimumSize", new Dimension(600, 200));
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
@@ -81,7 +99,11 @@ public class Main extends Application {
 
     }
 
-
+    /**
+     * Used the code written by Romanov and edited to set up the dimension
+     *
+     * @param message for printing information
+     */
     public static void infoMessage(String message) {
         UIManager.put("OptionPane.minimumSize", new Dimension(600, 200));
         UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
@@ -91,9 +113,14 @@ public class Main extends Application {
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
-
+    /**
+     * Used the code builted in Hotel Resort Project by Mushfique Shafi Romanov and Stephen
+     *
+     * @param pressedButton   name of the button pressed
+     * @param nameOfFxml      name of the fxml file
+     * @param titleOftheScene title of the scene
+     */
     public static void loadScene(Button pressedButton, String nameOfFxml, String titleOftheScene) {
-
         try {
             Stage stage;
 // retrieves and closes current stage
@@ -119,18 +146,7 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) throws SQLException {
-        DatabaseManager db = new DatabaseManager();
-        Screen screen = new Screen("1080p", 144, 3);
-        System.out.println(screen.toString());
-        MoviePlayer moviePlayer = new MoviePlayer("name" ,"manufacturer", new Screen("1920*2000", 200, 300), MonitorType.LED);
-        System.out.println(moviePlayer.toString());
-        ObservableList<LogView> productionData =
-                FXCollections.observableArrayList(logToFile1());
-        for (LogView s : productionData) {
-            System.out.println(s);
-        }
+    public static void main(String[] args) {
         launch(args);
-        db.closeCon();
     }
 }

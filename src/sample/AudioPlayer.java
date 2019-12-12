@@ -1,7 +1,4 @@
 package sample;
-
-import view.Main;
-
 /**
  * Audio player thats extends abstract class product and implement multimedia control.
  *

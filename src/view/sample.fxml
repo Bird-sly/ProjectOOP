@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
 <?import java.net.URL?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -10,20 +13,36 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1150.0" styleClass="background" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1150.0" styleClass="background" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.Controller">
+  <stylesheets>
+    <URL value="@Style.css" />
+    <URL value="@Style.css" />
+  </stylesheets>
   <tabs>
     <Tab fx:id="tab1" text="Product Line">
       <content>
         <AnchorPane prefHeight="800.0" prefWidth="1011.0">
           <children>
             <GridPane layoutX="14.0" layoutY="14.0" prefHeight="187.0" prefWidth="923.0">
+              <children>
+                <Label prefHeight="17.0" prefWidth="171.0" text="Manufacture" GridPane.rowIndex="1" />
+                <Label text="Product Name" />
+                <Label prefHeight="17.0" prefWidth="210.0" text="Item Type" GridPane.rowIndex="2" />
+                <TextField fx:id="ProductNameField" GridPane.columnIndex="1" />
+                <TextField fx:id="ManufactureField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <ComboBox fx:id="ItemTypeCombobox" prefWidth="150.0" promptText="Item Type" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+              </children>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -33,30 +52,22 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
-              <children>
-                <Label prefHeight="17.0" prefWidth="171.0" text="Manufacture" GridPane.rowIndex="1" />
-                <Label text="Product Name" />
-                <Label prefHeight="17.0" prefWidth="210.0" text="Item Type" GridPane.rowIndex="2" />
-                <TextField fx:id="ProductNameField" GridPane.columnIndex="1" />
-                <TextField fx:id="ManufactureField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <ComboBox fx:id="ItemTypeCombobox" prefWidth="150.0" promptText="Item Type" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-              </children>
             </GridPane>
             <Button fx:id="btnaddproduct" layoutX="818.0" layoutY="199.0" mnemonicParsing="false" onAction="#onaddproduct" text="Add Product" />
             <Label fx:id="productLabelLabel" layoutX="348.0" layoutY="258.0" prefHeight="70.0" prefWidth="354.0" text="Product Table" />
             <TableView fx:id="tableProduct" layoutX="113.0" layoutY="324.0" prefHeight="433.0" prefWidth="725.0">
               <columns>
-                <TableColumn fx:id="nameProduct" prefWidth="238.4444580078125" text="Product">
+                <TableColumn prefWidth="238.4444580078125" text="Product" fx:id="nameProduct">
                   <cellValueFactory>
                     <PropertyValueFactory property="name" />
                   </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="Manufacture" minWidth="0.0" prefWidth="219.5555419921875" text="Manufacture">
+                <TableColumn minWidth="0.0" prefWidth="219.5555419921875" text="Manufacture" fx:id="Manufacture">
                   <cellValueFactory>
                     <PropertyValueFactory property="manufacturer" />
                   </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="itemType" prefWidth="265.0" text="Item Tpe">
+                <TableColumn prefWidth="265.0" text="Item Tpe" fx:id="itemType">
                   <cellValueFactory>
                     <PropertyValueFactory property="type" />
                   </cellValueFactory>
@@ -77,6 +88,14 @@
               </font>
             </Label>
             <GridPane layoutX="215.0" layoutY="154.0" prefHeight="517.0" prefWidth="588.0">
+              <children>
+                <ListView fx:id="productList" prefHeight="432.0" prefWidth="352.0" />
+                <ComboBox fx:id="comboSort" onAction="#sortCombo" prefWidth="150.0" GridPane.rowIndex="1" />
+                <ComboBox fx:id="ChooseQuantity" editable="true" prefHeight="29.0" prefWidth="174.0" GridPane.columnIndex="1" />
+                <Label GridPane.columnIndex="1" />
+                <Button fx:id="RecordProduction" mnemonicParsing="false" onAction="#recordProductionAction" text="Record Production" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+              </children>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.5555419921875" minWidth="10.0" prefWidth="331.5555419921875" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.111083984375" minWidth="10.0" prefWidth="75.4444580078125" />
@@ -86,13 +105,6 @@
                 <RowConstraints maxHeight="199.5555419921875" minHeight="0.0" prefHeight="44.77777099609375" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="215.77780151367188" minHeight="10.0" prefHeight="64.4444580078125" vgrow="SOMETIMES" />
               </rowConstraints>
-              <children>
-                <ListView fx:id="productList" prefHeight="432.0" prefWidth="352.0" />
-                <Button fx:id="RecordProduction" mnemonicParsing="false" onAction="#recordProductionAction" text="Record Production" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <ComboBox fx:id="comboSort" onAction="#sortCombo" prefWidth="150.0" GridPane.rowIndex="1" />
-                <ComboBox fx:id="ChooseQuantity" editable="true" prefHeight="29.0" prefWidth="174.0" GridPane.columnIndex="1" />
-                <Label GridPane.columnIndex="1" />
-              </children>
             </GridPane>
           </children>
         </AnchorPane>
@@ -104,13 +116,12 @@
           <children>
             <TableView fx:id="logTable" layoutX="-2.0" layoutY="-4.0" prefHeight="771.0" prefWidth="1150.0">
               <columns>
-                <TableColumn fx:id="LogId" prefWidth="79.77777099609375" text="LogId">
+                <TableColumn prefWidth="79.77777099609375" text="LogId" fx:id="LogId">
                   <cellValueFactory>
                     <PropertyValueFactory property="lineId" />
                   </cellValueFactory>
                 </TableColumn>
-
-                <TableColumn fx:id="logData" prefWidth="1069.0" text="Data">
+                <TableColumn prefWidth="1069.0" text="Data" fx:id="logData">
                   <cellValueFactory>
                     <PropertyValueFactory property="log" />
                   </cellValueFactory>
@@ -126,6 +137,20 @@
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
           <children>
             <GridPane layoutX="314.0" layoutY="102.0">
+              <children>
+                <TextField fx:id="EmployeeTab_Name" editable="false" GridPane.columnIndex="2" />
+                <TextField fx:id="EmployeeTab_UserId" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <Label text="Name" textFill="#d8e014" />
+                <Label text="User ID" textFill="#f6fe57" GridPane.rowIndex="2" />
+                <Label text="Email" GridPane.rowIndex="4">
+                  <textFill>
+                    <Color blue="0.047" green="0.949" red="0.890" fx:id="x1" />
+                  </textFill>
+                </Label>
+                <TextField fx:id="EmployeeTab_Email" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <Label text="Dept Id" textFill="$x1" GridPane.rowIndex="6" />
+                <TextField fx:id="EmployeeTab_Dept" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+              </children>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.44439697265625" minWidth="10.0" prefWidth="132.44439697265625" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.6666259765625" minWidth="10.0" prefWidth="21.55560302734375" />
@@ -140,25 +165,11 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
-              <children>
-                <TextField fx:id="EmployeeTab_Name" editable="false" GridPane.columnIndex="2" />
-                <TextField fx:id="EmployeeTab_UserId" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                <Label text="Name" textFill="#d8e014" />
-                <Label text="User ID" textFill="#f6fe57" GridPane.rowIndex="2" />
-                <Label text="Email" textFill="#e3f20c" GridPane.rowIndex="4" />
-                <TextField fx:id="EmployeeTab_Email" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                <Label text="Dept Id" textFill="#e3f20c" GridPane.rowIndex="6" />
-                <TextField fx:id="EmployeeTab_Dept" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-              </children>
             </GridPane>
-            <Button fx:id="logout" layoutX="628.0" layoutY="344.0" mnemonicParsing="false" onAction="#lougoutAction" text="Logout" />
+            <Button fx:id="logout" layoutX="628.0" layoutY="344.0" mnemonicParsing="false" onAction="#logoutAction" text="Logout" />
           </children>
         </AnchorPane>
       </content>
     </Tab>
   </tabs>
-  <stylesheets>
-    <URL value="@Style.css" />
-    <URL value="@Style.css" />
-  </stylesheets>
 </TabPane>

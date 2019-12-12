@@ -31,6 +31,18 @@ public final class Employee{
         setUsername();
         setEmail();
     }
+    static String reverseString(String st) {
+        String result;
+        if (st.length() <= 1) {
+            result = st;
+        } else {
+            String last = st.substring(st.length() - 1);
+            String toLast = st.substring(0, st.length() - 1);
+
+            result = (last + reverseString(toLast));
+        }
+        return result;
+    }
 
     public Employee() {
 

@@ -20,7 +20,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import view.Main;
 
 
 /**
@@ -61,6 +60,8 @@ public class Controller {
 
     @FXML
     private ComboBox<String> ChooseQuantity;
+    @FXML
+    private TextField deptId;
 
     @FXML
     private Button RecordProduction;
@@ -105,7 +106,7 @@ public class Controller {
     public static String employee;
     public static String email;
     public static String employeeId;
-    public static String deptId;
+
 
     @FXML
     void recordProductionAction(ActionEvent event) throws SQLException {
@@ -113,6 +114,7 @@ public class Controller {
         String nameOfSelected = tempString1.getName();
         String manufacturerName = tempString1.getManufacturer();
         ItemType itemTypeSelected = tempString1.getType();
+        String deptIdForEmp = deptId.getText();
 
         String quantityTemp = ChooseQuantity.getValue();
         int quantity = Integer.parseInt(quantityTemp);
@@ -131,10 +133,9 @@ public class Controller {
             db.RecordProduction(idOftheSelected, timeStamp);
             Timestamp timeOfProduction = new Timestamp(System.currentTimeMillis());
             Main.logToFile("Type: %s (%s) || Name: %s || Made: %s || "
-                            + "Added by %s (userid: %s) from department: %s at %s "
+                            + "by an employee from departmentid of : %s at %s "
                             + "\n", itemTypeSelected, itemTypeSelected.getCode(), nameOfSelected, manufacturerName,
-                    Controller.employee, Controller.employeeId, (Controller.deptId),
-                    timeOfProduction);
+                   Employee.reverseString(deptIdForEmp), timeOfProduction);
             logList = FXCollections.observableArrayList(Main.logToFile1());
 
             logTable.setItems(logList);
@@ -143,10 +144,8 @@ public class Controller {
     @FXML
     public void initialize() {
 
-        EmployeeTab_UserId.setText(employeeId);
-        EmployeeTab_Name.setText(employee);
-        EmployeeTab_Email.setText(email);
-        EmployeeTab_Dept.setText(deptId);
+
+
         ObservableList<String> logData = FXCollections.observableArrayList();
         try (FileReader fr = new FileReader(Main.PATH);
              BufferedReader bfr = new BufferedReader(fr)) {
