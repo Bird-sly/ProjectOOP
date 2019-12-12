@@ -21,8 +21,9 @@ import java.util.List;
  * Main Class to run the ProductionLog
  */
 public class Main extends Application {
-
-    //Production log list text file
+    /***
+     *  Production log list text file
+     */
     public static final String PATH = "res/productionLog.txt";
     /**
      * Method for starting a scene
@@ -34,8 +35,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 800,800));
         primaryStage.show();
     }
-
-
     /**
      * Method for adding the log to the text file
      *
@@ -52,9 +51,7 @@ public class Main extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
     /**
      * Nethod for saving the text to text file
      *
@@ -85,8 +82,6 @@ public class Main extends Application {
     }
 
     /**
-     * Used the code written by Romanov and edited to set up the dimension
-     *
      * @param message display the error message
      */
     public static void errorMessage(String message) {
@@ -100,8 +95,6 @@ public class Main extends Application {
     }
 
     /**
-     * Used the code written by Romanov and edited to set up the dimension
-     *
      * @param message for printing information
      */
     public static void infoMessage(String message) {
@@ -114,8 +107,6 @@ public class Main extends Application {
     }
 
     /**
-     * Used the code builted in Hotel Resort Project by Mushfique Shafi Romanov and Stephen
-     *
      * @param pressedButton   name of the button pressed
      * @param nameOfFxml      name of the fxml file
      * @param titleOftheScene title of the scene
@@ -123,29 +114,19 @@ public class Main extends Application {
     public static void loadScene(Button pressedButton, String nameOfFxml, String titleOftheScene) {
         try {
             Stage stage;
-// retrieves and closes current stage
             stage = (Stage) pressedButton.getScene().getWindow();
             stage.close();
-// loads main screen stage
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(nameOfFxml));
             Parent profile = fxmlLoader.load();
-
-// creates a new stage
             Stage newStage = new Stage();
             newStage.setTitle(titleOftheScene);
             newStage.setScene(new Scene(profile));
-
-// set new stage to current stage and display stage
             stage = newStage;
             stage.show();
-
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
     }
-
-
     public static void main(String[] args) {
         launch(args);
     }

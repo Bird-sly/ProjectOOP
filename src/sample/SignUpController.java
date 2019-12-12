@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 
 /**
  * Sign Up Controller where sign up information are filled out.
- *
  * @author Brendan Beardsleey
  * @version 1.0
  */
@@ -26,7 +25,7 @@ public class SignUpController {
     private Button button_create;
     @FXML
     /**
-     * Create account method when preesed create account
+     * Create account method when create account
      *Information saves in the database
      */
     void createAccount(ActionEvent event) {
@@ -39,7 +38,6 @@ public class SignUpController {
         if (fieldsCompleted) {
             if (password.equals(cpassword)) {
                 try {
-
                     StringBuilder sb = new StringBuilder();
                     Employee employee = new Employee(sb.append(fullNameText), password, depId);
                     String email = employee.getEmail();
@@ -66,7 +64,6 @@ public class SignUpController {
 
     /**
      * This method is a back button to login screen
-     *
      * @param event back button action
      */
     @FXML

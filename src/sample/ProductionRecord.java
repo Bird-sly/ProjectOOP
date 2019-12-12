@@ -18,9 +18,6 @@ public class ProductionRecord {
     private String manufacturer;
     private String type;
 
-
-
-
     public int getProductID() {
         return productID;
     }
@@ -96,7 +93,6 @@ public class ProductionRecord {
 
     /**
      * This allows me to print the results, making sure it works
-     *
      * @return A String with all fields in space separated strings
      */
     @Override

@@ -29,7 +29,6 @@ public class AudioPlayer extends Product implements MultimediaControl {
         System.out.println("Playing");
         Main.infoMessage("Playing");
     }
-
     /**
      * Notification of stop.
      */

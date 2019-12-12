@@ -17,8 +17,7 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 /**
- * Database Manager to function all the database operation.
- *
+ * Database Manager to control & facilitate all the database operation.
  * @author Brendan Beardsley
  * @version 1.0
  */
@@ -30,7 +29,7 @@ public class DatabaseManager extends Main {
 
     /**
      * Constructs a new DatabaseManager.
-     */ //final String JDBC_DRIVER = "org.h2.Driver";
+     */
     public DatabaseManager() {
         try {
 
@@ -52,7 +51,7 @@ public class DatabaseManager extends Main {
         return DriverManager.getConnection("jdbc:h2:./res/ProductLine", "", "");
     }
     /**
-     * Insert method for adding new employee in the database.
+     * Made for adding employees to the Employee table
      *
      * @param fullName Full Name for the employee.
      * @param userId   userId for the for the employee auto generated.
@@ -60,7 +59,6 @@ public class DatabaseManager extends Main {
      * @param email    email auto generated for the employee.
      * @param deptId   dept id for the employee.
      */
-    //method for entering employee information to the Employee table
     public void insertEmployee(StringBuilder fullName, String userId, String password, String email,
                                String deptId) {
         String userIdTemp;
@@ -110,7 +108,6 @@ public class DatabaseManager extends Main {
      * @param insertValues insert value for the item count.
      * @throws SQLException SQL Exception.
      */
-
     public void insertProd(String iQuery, String[] insertValues) throws SQLException {
 
         PreparedStatement pstmt = this.con.prepareStatement(iQuery);
@@ -118,16 +115,12 @@ public class DatabaseManager extends Main {
         pstmt.setString(2, insertValues[1]);
         pstmt.executeUpdate();
     }
-
-
     /**
      * Method of getting the Product Id.
      *
      * @param nameSelected name of the selected produtct.
      * @return id of the product selected.
      */
-
-
     public int getTheIdFromSelected(Product nameSelected) {
         try {
             String name = nameSelected.getName();
@@ -148,13 +141,10 @@ public class DatabaseManager extends Main {
         return 0;
     }
 
-    /**
-     * Method for the the addition of the product with serial number to the production record.
-     *
-     * @param idProduct        id of the product
+    /***
+     * @param idProduct  id of the product
      * @param dateofProduction date of the product adding to the database.
      */
-
     public void RecordProduction(int idProduct, Date dateofProduction) {
         try {
             PreparedStatement stmt = con
@@ -173,12 +163,10 @@ public class DatabaseManager extends Main {
 
     /**
      * Method for record the quantity of the product.
-     *
      * @param quantity quantity of the product from the combo box.
      * @param name     name of the product to adding to the database.
      * @return the quantity.
      */
-
     public int recordQauntity(int quantity, String name) {
 
         try {
@@ -211,10 +199,9 @@ public class DatabaseManager extends Main {
 
 
     /**
-     * Method for adding a new product.
-     *
-     * @param itemType         item type of the product.
-     * @param itemName         name of the item.
+     * Method for adding  a new product to the DB
+     * @param itemType item type of the product.
+     * @param itemName name of the item.
      * @param itemManufacturer name of the manufacture of the item.
      */
     public void TableProduct(String itemType, String itemName, String itemManufacturer) {
@@ -275,8 +262,7 @@ public class DatabaseManager extends Main {
     }
 
     /**
-     * Method for generating the list view for the product display from database.
-     *
+     * Method for generating the list view for the product display from database
      * @param typeSort type of sorting.
      * @return Listview.
      * @throws SQLException SQL Exception.
@@ -330,24 +316,10 @@ public class DatabaseManager extends Main {
         }
         return null;
     }
-
-
     /**
-     * Login Method.
-     *
-     * @param userName      username for verify login.
-     * @param passwordTyped password verify.
-     * @return login verification as true or false.
-     * @throws SQLException SQL Exception.
-     */
-
-
-    /**
-     * SQL exception method.
-     *
+     * makes the SQL exception
      * @param error SQL ERROR.
      */
-
     public void sqlExceptionHandler(SQLException error) {
 
         Main.errorMessage("Standard Failure: " + error.getMessage());
@@ -378,7 +350,13 @@ public class DatabaseManager extends Main {
     }
 
 
-
+    /***
+     *
+     * @param userName
+     * @param passwordTyped
+     * @return
+     * @throws SQLException
+     */
     public boolean login(String userName, String passwordTyped) throws SQLException {
         String query = "Select * from Employee where userid = ?";
 

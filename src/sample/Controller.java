@@ -20,8 +20,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-
-
 /**
  * The controller class where the main page scene is executed.
  *
@@ -29,14 +27,11 @@ import javafx.scene.control.TextField;
  * @version 1.0
  */
 public class Controller {
-
-
     Statement statement;
     @FXML
     private Button logout;
     @FXML
     private Label userIdShow;
-
     @FXML
     private TextField ProductNameField;
     @FXML
@@ -47,7 +42,6 @@ public class Controller {
     private Tab tab3;
     @FXML
     private Tab tab1;
-
 
     @FXML
     private TextField ManufactureField;
@@ -107,7 +101,12 @@ public class Controller {
     public static String email;
     public static String employeeId;
 
-
+    /***
+     *button for record production in DB
+     * and searching DB
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void recordProductionAction(ActionEvent event) throws SQLException {
         Product tempString1 = productList.getSelectionModel().getSelectedItem();
@@ -141,6 +140,8 @@ public class Controller {
             logTable.setItems(logList);
         }
     }
+
+
     @FXML
     public void initialize() {
 
@@ -175,6 +176,12 @@ public class Controller {
         ChooseQuantity.setEditable(true);
         tableProduct.setItems(observableList);
     }
+
+    /***
+     *For adding a product
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onaddproduct(ActionEvent event) throws SQLException {
         String productName = ProductNameField.getText();
@@ -189,16 +196,31 @@ public class Controller {
         ManufactureField.clear();
         setComboBoxText();
     }
+
+    /***
+     *Populating the list for DB
+     * @param name
+     * @param Company
+     * @param type
+     * @return
+     */
     public static ObservableList<ProductView> populateList(String name, String Company, String type) {
         return FXCollections.observableArrayList(
                 new ProductView(name, Company, type));
     }
 
+    /***
+     *setting combo box
+     */
     private void setComboBoxText() {
         comboSort.setPromptText("Select a type of sort.");
         comboSort.getItems().addAll("Name", "Type", "Quantity", "Manufacturer");
     }
 
+    /***
+     *sorting combo box in DB
+     * @param event
+     */
     @FXML
     void sortCombo(ActionEvent event) {
         String sortSelected = comboSort.getValue();
@@ -217,6 +239,11 @@ public class Controller {
         }
 
     }
+
+    /***
+     *logout action for Controller(sample.fxml)
+     * @param event
+     */
     @FXML
     void logoutAction(ActionEvent event) {
         Main.loadScene(logout, "loginScreen.fxml", "Login Screen");

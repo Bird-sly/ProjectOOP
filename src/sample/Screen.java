@@ -2,7 +2,6 @@ package sample;
 
 /**
  * Screen class which implements from ScreenSpec
- *
  * @author Brendan Beardsley
  * @version 1.0
  */

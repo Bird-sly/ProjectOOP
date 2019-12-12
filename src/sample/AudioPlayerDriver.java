@@ -7,7 +7,6 @@ package sample;
  * @version 1.0
  */
 public class AudioPlayerDriver extends AudioPlayer {
-
     /**
      * @param name               name of the product.
      * @param manufacturer       manufacturere of the product.
@@ -18,12 +17,10 @@ public class AudioPlayerDriver extends AudioPlayer {
                       ItemType mediaType) {
         super(name, manufacturer, audioSpecification, mediaType);
     }
-
     /**
      * Audio Player driver execution.
      */
     public static void main(String[] args) {
-
         AudioPlayer newProduct = new AudioPlayer("Walkman", "Walkman", "MONO", ItemType.AUDIO);
         newProduct.play();
         newProduct.stop();

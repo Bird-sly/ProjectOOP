@@ -20,7 +20,6 @@ public class MoviePlayer extends Product implements MultimediaControl {
        this.monitorType = monitorType;
     }
 
-
     /**
      * Method to play the movie
      */
@@ -35,9 +34,7 @@ public class MoviePlayer extends Product implements MultimediaControl {
     @Override
     public void stop() {
         System.out.println("Stopping now");
-
     }
-
     /**
      * Method to play the previous movie
      */
@@ -46,7 +43,6 @@ public class MoviePlayer extends Product implements MultimediaControl {
         System.out.println("Going to previous");
 
     }
-
     /**
      * Method to play the next movie
      */
