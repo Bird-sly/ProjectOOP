@@ -37,7 +37,7 @@ public class loginScreenController {
      * @throws SQLException N/A.
      * @throws IOException  N/A.
      */
-  /*  @FXML
+   @FXML
     void loginFunction(ActionEvent event) throws SQLException, IOException {
 
         DatabaseManager db = new DatabaseManager();
@@ -49,7 +49,7 @@ public class loginScreenController {
             Main.errorMessage("Password doesnt match");
         }
 
-    }*/
+    }
 
     /**
      * Initialize the screen

@@ -377,7 +377,9 @@ public class DatabaseManager extends Main {
         return 0;
     }
 
-   /* public boolean login(String userName, String passwordTyped) throws SQLException {
+
+
+    public boolean login(String userName, String passwordTyped) throws SQLException {
         String query = "Select * from Employee where userid = ?";
 
         PreparedStatement stmt = con.prepareStatement(query);
@@ -396,5 +398,5 @@ public class DatabaseManager extends Main {
             return password.equals(passwordTyped);
         }
         return false;
-    }*/
+    }
 }
