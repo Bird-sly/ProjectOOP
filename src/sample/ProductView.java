@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.collections.ObservableList;
+
 /**
  * ProductView Class for the Product
  */
@@ -15,8 +16,10 @@ public class ProductView {
         this.manufacture = manufacture;
         this.type = type;
     }
+
     public static void setItems(ObservableList<ProductView> data) {
     }
+
     public String getProduct() {
         return product;
     }

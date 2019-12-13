@@ -17,6 +17,7 @@ public class AudioPlayerDriver extends AudioPlayer {
                       ItemType mediaType) {
         super(name, manufacturer, audioSpecification, mediaType);
     }
+
     /**
      * Audio Player driver execution.
      */

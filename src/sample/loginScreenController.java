@@ -2,6 +2,7 @@ package sample;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -24,6 +25,7 @@ public class loginScreenController {
     private Button loginButton;
     @FXML
     private Button signUp;
+
     @FXML
     void signUpScene(ActionEvent event) {
         Main.loadScene(signUp, "loginScreen.fxml", "Signup Screen");
@@ -37,7 +39,7 @@ public class loginScreenController {
      * @throws SQLException N/A.
      * @throws IOException  N/A.
      */
-   @FXML
+    @FXML
     void loginFunction(ActionEvent event) throws SQLException, IOException {
 
         DatabaseManager db = new DatabaseManager();

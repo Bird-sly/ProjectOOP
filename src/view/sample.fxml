@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
 <?import java.net.URL?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -13,18 +10,15 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1150.0" styleClass="background" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1150.0" styleClass="background" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
   <stylesheets>
     <URL value="@Style.css" />
     <URL value="@Style.css" />
@@ -34,13 +28,13 @@
       <content>
         <AnchorPane prefHeight="800.0" prefWidth="1011.0">
           <children>
-            <GridPane layoutX="14.0" layoutY="14.0" prefHeight="187.0" prefWidth="923.0">
+            <GridPane layoutX="14.0" layoutY="14.0" prefHeight="266.0" prefWidth="995.0">
               <children>
                 <Label prefHeight="17.0" prefWidth="171.0" text="Manufacture" GridPane.rowIndex="1" />
                 <Label text="Product Name" />
                 <Label prefHeight="17.0" prefWidth="210.0" text="Item Type" GridPane.rowIndex="2" />
                 <TextField fx:id="ProductNameField" GridPane.columnIndex="1" />
-                <TextField fx:id="ManufactureField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="ManufactureField" prefHeight="31.0" prefWidth="549.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <ComboBox fx:id="ItemTypeCombobox" prefWidth="150.0" promptText="Item Type" GridPane.columnIndex="1" GridPane.rowIndex="2" />
               </children>
               <columnConstraints>
@@ -53,21 +47,21 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
-            <Button fx:id="btnaddproduct" layoutX="818.0" layoutY="199.0" mnemonicParsing="false" onAction="#onaddproduct" text="Add Product" />
+            <Button fx:id="btnaddproduct" layoutX="899.0" layoutY="293.0" mnemonicParsing="false" onAction="#onaddproduct" text="Add Product" />
             <Label fx:id="productLabelLabel" layoutX="348.0" layoutY="258.0" prefHeight="70.0" prefWidth="354.0" text="Product Table" />
             <TableView fx:id="tableProduct" layoutX="113.0" layoutY="324.0" prefHeight="433.0" prefWidth="725.0">
               <columns>
-                <TableColumn prefWidth="238.4444580078125" text="Product" fx:id="nameProduct">
+                <TableColumn fx:id="nameProduct" prefWidth="238.4444580078125" text="Product">
                   <cellValueFactory>
                     <PropertyValueFactory property="name" />
                   </cellValueFactory>
                 </TableColumn>
-                <TableColumn minWidth="0.0" prefWidth="219.5555419921875" text="Manufacture" fx:id="Manufacture">
+                <TableColumn fx:id="Manufacture" minWidth="0.0" prefWidth="219.5555419921875" text="Manufacture">
                   <cellValueFactory>
                     <PropertyValueFactory property="manufacturer" />
                   </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="265.0" text="Item Tpe" fx:id="itemType">
+                <TableColumn fx:id="itemType" prefWidth="265.0" text="Item Tpe">
                   <cellValueFactory>
                     <PropertyValueFactory property="type" />
                   </cellValueFactory>
@@ -82,7 +76,7 @@
       <content>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
           <children>
-            <Label layoutX="367.0" layoutY="81.0" text="Choose Product " underline="true">
+            <Label graphicTextGap="7.0" layoutX="367.0" layoutY="81.0" text="Choose Product " textFill="WHITE" underline="true">
               <font>
                 <Font size="28.0" />
               </font>
@@ -116,12 +110,12 @@
           <children>
             <TableView fx:id="logTable" layoutX="-2.0" layoutY="-4.0" prefHeight="771.0" prefWidth="1150.0">
               <columns>
-                <TableColumn prefWidth="79.77777099609375" text="LogId" fx:id="LogId">
+                <TableColumn fx:id="LogId" prefWidth="79.77777099609375" text="LogId">
                   <cellValueFactory>
                     <PropertyValueFactory property="lineId" />
                   </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="1069.0" text="Data" fx:id="logData">
+                <TableColumn fx:id="logData" prefWidth="1069.0" text="Data">
                   <cellValueFactory>
                     <PropertyValueFactory property="log" />
                   </cellValueFactory>

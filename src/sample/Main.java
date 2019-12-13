@@ -25,6 +25,7 @@ public class Main extends Application {
      *  Production log list text file
      */
     public static final String PATH = "res/productionLog.txt";
+
     /**
      * Method for starting a scene
      */
@@ -32,9 +33,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Login Screen");
-        primaryStage.setScene(new Scene(root, 800,800));
+        primaryStage.setScene(new Scene(root, 800, 800));
         primaryStage.show();
     }
+
     /**
      * Method for adding the log to the text file
      *
@@ -52,6 +54,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
     /**
      * Nethod for saving the text to text file
      *
@@ -127,6 +130,7 @@ public class Main extends Application {
             ex.printStackTrace();
         }
     }
+
     public static void main(String[] args) {
         launch(args);
     }

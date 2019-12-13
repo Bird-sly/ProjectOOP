@@ -2,6 +2,7 @@ package sample;
 
 /**
  * Widget class to record production that extends product
+ *
  * @author Brendan Beardsley
  * @version 1.0
  */

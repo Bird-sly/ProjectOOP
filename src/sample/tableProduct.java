@@ -2,6 +2,7 @@ package sample;
 
 /**
  * Method for Table to generate.
+ *
  * @version 1.0
  */
 public class tableProduct {
@@ -10,6 +11,7 @@ public class tableProduct {
     String manufacturer;
     String name;
     ItemType itemTypeCode;
+
     /**
      * Table constructor
      *
@@ -24,6 +26,7 @@ public class tableProduct {
         this.type = type;
         this.itemTypeCode = itemTypeCode;
     }
+
     /**
      * Getter for property 'ID'.
      *
@@ -32,6 +35,7 @@ public class tableProduct {
     public int getID() {
         return id;
     }
+
     /**
      * Getter for property 'type'.
      *
@@ -58,7 +62,8 @@ public class tableProduct {
     public void setType(ItemType type) {
         this.type = type;
     }
-     /**
+
+    /**
      * Getter for property 'manufacturer'.
      *
      * @return Value for property 'manufacturer'.
@@ -66,6 +71,7 @@ public class tableProduct {
     public String getManufacturer() {
         return manufacturer;
     }
+
     /**
      * Setter for property 'manufacturer'.
      *
@@ -74,6 +80,7 @@ public class tableProduct {
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
     }
+
     /**
      * Getter for property 'name'.
      *
@@ -82,6 +89,7 @@ public class tableProduct {
     public String getName() {
         return name;
     }
+
     /**
      * Setter for property 'name'.
      *

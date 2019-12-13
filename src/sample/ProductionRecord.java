@@ -4,6 +4,7 @@ import java.util.Date;
 
 /**
  * Method for Production Record.
+ *
  * @author Brendan Beardsley
  * @version 1.0
  */

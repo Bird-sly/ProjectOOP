@@ -9,10 +9,11 @@ import java.util.regex.Pattern;
 
 /**
  * Employee class to create an employee.
+ *
  * @author Brendan Beardsley
  * @version 1.0
  */
-public final class Employee{
+public final class Employee {
 
     StringBuilder name;
     String username;
@@ -24,13 +25,16 @@ public final class Employee{
     private Connection conn = null;
     private PreparedStatement ps = null;
 
-    /** Constructor that sets the username. */
+    /**
+     * Constructor that sets the username.
+     */
     public Employee(StringBuilder name, String password, String deptId) {
         this.username = "test";
         setDeptId(deptId);
         setUsername();
         setEmail();
     }
+
     static String reverseString(String st) {
         String result;
         if (st.length() <= 1) {
@@ -54,6 +58,7 @@ public final class Employee{
             username = tokens[0].substring(0, 1) + "." + tokens[1];
         }
     }
+
     private void setDeptId(String deptId) {
         if (validId(deptId)) {
             this.deptId = deptId;
@@ -62,13 +67,16 @@ public final class Employee{
         }
 
     }
+
     private boolean checkName() {
-        return name.toString().contains(" ");}
+        return name.toString().contains(" ");
+    }
 
     public Employee(String username, String password) {
         this.username = username;
         this.password = password;
     }
+
     private void setEmail() {
         if (checkName()) {
             String[] tokens = name.toString().toLowerCase().split(" ");
@@ -77,11 +85,15 @@ public final class Employee{
         }
 
     }
+
     private boolean validId(String id) {
         Matcher deptIdValidation = depPattern.matcher(id);
         return deptIdValidation.find();
     }
-    /** Method to create a new user and insert it into the database. */
+
+    /**
+     * Method to create a new user and insert it into the database.
+     */
     public void createUser() {
         try {
             conn = dao.getConnection();
@@ -126,6 +138,7 @@ public final class Employee{
         }
         return exists;
     }
+
     /**
      * Getter for property 'name'.
      *
@@ -171,6 +184,7 @@ public final class Employee{
         return deptId;
 
     }
+
     /**
      * Method to compare the entered password on the login screen with the password in the database.
      *

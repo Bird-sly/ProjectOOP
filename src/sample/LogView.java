@@ -6,8 +6,10 @@ package sample;
 public class LogView {
     private String log;
     private int lineId;
+
     /**
      * Constructor Logview
+     *
      * @param log    log statement
      * @param lineId id of the login
      */
@@ -15,8 +17,10 @@ public class LogView {
         this.log = log;
         this.lineId = lineId;
     }
+
     /**
      * Getter for property 'log'.
+     *
      * @return Value for property 'log'.
      */
     public String getLog() {
@@ -25,6 +29,7 @@ public class LogView {
 
     /**
      * Setter for property 'log'.
+     *
      * @param log Value to set for property 'log'.
      */
     public void setLog(String log) {
@@ -33,6 +38,7 @@ public class LogView {
 
     /**
      * Getter for property 'lineId'
+     *
      * @return Value for property 'lineId'.
      */
     public int getLineId() {
@@ -41,6 +47,7 @@ public class LogView {
 
     /**
      * Setter for property 'lineId'.
+     *
      * @param lineId Value to set for property 'lineId'.
      */
     public void setLineId(int lineId) {

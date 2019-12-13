@@ -1,4 +1,5 @@
 package sample;
+
 /**
  * Audio player thats extends abstract class product and implement multimedia control.
  *
@@ -8,6 +9,7 @@ package sample;
 public class AudioPlayer extends Product implements MultimediaControl {
     private String audioSpecification;
     private ItemType mediaType;
+
     /**
      * Audio player constructor.
      *
@@ -21,6 +23,7 @@ public class AudioPlayer extends Product implements MultimediaControl {
         this.audioSpecification = audioSpecification;
         this.mediaType = mediaType;
     }
+
     /**
      * Notification of playing.
      */
@@ -29,6 +32,7 @@ public class AudioPlayer extends Product implements MultimediaControl {
         System.out.println("Playing");
         Main.infoMessage("Playing");
     }
+
     /**
      * Notification of stop.
      */
@@ -37,6 +41,7 @@ public class AudioPlayer extends Product implements MultimediaControl {
         System.out.println("Stopped");
         Main.infoMessage("Stopped");
     }
+
     /**
      * Notification of playing previous.
      */
@@ -45,6 +50,7 @@ public class AudioPlayer extends Product implements MultimediaControl {
         System.out.println("Previous");
         Main.infoMessage("Previous");
     }
+
     /**
      * Notification of playing next.
      */
@@ -53,6 +59,7 @@ public class AudioPlayer extends Product implements MultimediaControl {
         System.out.println("next");
         Main.infoMessage("Next");
     }
+
     /**
      * To String method of audio player.
      */

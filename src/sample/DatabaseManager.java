@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 /**
  * Database Manager to control & facilitate all the database operation.
+ *
  * @author Brendan Beardsley
  * @version 1.0
  */
@@ -36,20 +37,22 @@ public class DatabaseManager extends Main {
             Properties openFile = new Properties();
             openFile.load(new FileInputStream("res/pass"));
             String user = openFile.getProperty("user");
-          //  String pass = Employee.reverseString(openFile.getProperty("pass"));
+            //  String pass = Employee.reverseString(openFile.getProperty("pass"));
             this.con = DriverManager
                     .getConnection("jdbc:h2:C:\\Users\\Brendan\\IdeaProjects\\project\\res\\ProductLine"
-                            );
+                    );
 
         } catch (SQLException | IOException exception) {
             exception.printStackTrace();
 
         }
     }
+
     public Connection getConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.h2.Driver");
         return DriverManager.getConnection("jdbc:h2:./res/ProductLine", "", "");
     }
+
     /**
      * Made for adding employees to the Employee table
      *
@@ -95,7 +98,7 @@ public class DatabaseManager extends Main {
             stmt2.setString(4, email);
             stmt2.setString(5, deptId);
             stmt2.executeUpdate();
-            Main.infoMessage("USERID:- " + userId + "\nEmail:- " + email + "\nDepartment Id:- "+ deptId);
+            Main.infoMessage("USERID:- " + userId + "\nEmail:- " + email + "\nDepartment Id:- " + deptId);
         } catch (Exception e) {
             Main.errorMessage("This Name is already taken");
             e.printStackTrace();
@@ -115,6 +118,7 @@ public class DatabaseManager extends Main {
         pstmt.setString(2, insertValues[1]);
         pstmt.executeUpdate();
     }
+
     /**
      * Method of getting the Product Id.
      *
@@ -163,6 +167,7 @@ public class DatabaseManager extends Main {
 
     /**
      * Method for record the quantity of the product.
+     *
      * @param quantity quantity of the product from the combo box.
      * @param name     name of the product to adding to the database.
      * @return the quantity.
@@ -194,14 +199,11 @@ public class DatabaseManager extends Main {
     }
 
 
-
-
-
-
     /**
      * Method for adding  a new product to the DB
-     * @param itemType item type of the product.
-     * @param itemName name of the item.
+     *
+     * @param itemType         item type of the product.
+     * @param itemName         name of the item.
      * @param itemManufacturer name of the manufacture of the item.
      */
     public void TableProduct(String itemType, String itemName, String itemManufacturer) {
@@ -217,6 +219,7 @@ public class DatabaseManager extends Main {
             this.sqlExceptionHandler(var6);
         }
     }
+
     public String[] getProductInfo(int productID) throws SQLException {
         String query = "SELECT * FROM PRODUCT WHERE ID = ?";
         PreparedStatement stmt = con.prepareStatement(query);
@@ -230,8 +233,9 @@ public class DatabaseManager extends Main {
         prodName = results.getString("NAME");
         manufacturer = results.getString("MANUFACTURER");
         type = results.getString("TYPE");
-        return new String[] {prodName, manufacturer, type};
+        return new String[]{prodName, manufacturer, type};
     }
+
     public List<ProductionRecord> getProductionInfo() {
         List<ProductionRecord> prodList = new ArrayList<>();
         try {
@@ -263,6 +267,7 @@ public class DatabaseManager extends Main {
 
     /**
      * Method for generating the list view for the product display from database
+     *
      * @param typeSort type of sorting.
      * @return Listview.
      * @throws SQLException SQL Exception.
@@ -316,14 +321,17 @@ public class DatabaseManager extends Main {
         }
         return null;
     }
+
     /**
      * makes the SQL exception
+     *
      * @param error SQL ERROR.
      */
     public void sqlExceptionHandler(SQLException error) {
 
         Main.errorMessage("Standard Failure: " + error.getMessage());
     }
+
     public void closeCon() {
         try {
             con.close();
@@ -331,6 +339,7 @@ public class DatabaseManager extends Main {
             sqlExceptionHandler(e);
         }
     }
+
     public int fetchQauntity(String name) {
 
         try {
