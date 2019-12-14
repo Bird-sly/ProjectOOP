@@ -1,5 +1,23 @@
 # ProjectOOP
-oop class project 
+OOP class project.
+By Brendan Beardsley.
+Built in 12/12/2019
+Made for  COP 3003
+FGCU 
+#Built With
+*IDE's Used:
+    *Intellij
+    *Scenebuilder
+## Author 
+Brendan Beardsley
+
+## Acknowledgments
+Professor Josiah Greenwell
+
+https://stackoverflow.com/
+##History 
+This program was last updated on 12/13/2019
+##Key programing outline:
 THis project is set up through weekly sprints throughout the class
 I had to catch up learning java so most of the project will be sent in at the same time 
 
